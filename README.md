@@ -24,3 +24,17 @@ sudo apt install stow git
 git clone https://github.com/TheerapatGunthog/dotfiles.git
 cd dotfiles
 ```
+
+## Usage
+
+```bash
+# To install the configuration files
+stow <folder-name> # e.g. stow, nvim or zsh
+```
+
+## Uninstallation
+
+```bash
+# To uninstall the configuration files
+stow -D <folder-name> # e.g. stow, nvim or zsh
+```
