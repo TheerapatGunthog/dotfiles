@@ -85,33 +85,34 @@ return {
     { "ellisonleao/gruvbox.nvim", priority = 1000, config = true },
     {
         "zenbones-theme/zenbones.nvim",
-        dependencies = "rktjmp/lush.nvim",
-        lazy = false,
-        priority = 1000,
+        dependencies = { "rktjmp/lush.nvim" },
+        lazy = false,    -- Load immediately
+        priority = 1000, -- Load before other plugins
         config = function()
             vim.g.zenbones = {
-                lighness = "dim",                     -- "dim" for dark theme (options: bright, dim, auto)
-                darkness = "stark",                   -- "stark" for deep dark theme (options: stark, warm, cool)
-                darken_comments = 0.15,               -- less darkening in dark mode (comments are already dark)
-                darken_non_text = 0.1,                -- less darkening for non-text in dark mode
-                darken_line_nr = 0.3,                 -- still keep line numbers visible
-                colorize_diagnostic_underline = true, -- colorize diagnostic underlines
-                -- Styles are "bold", "italic", "underline", "undercurl", "strikethrough"
+                darkness = "warm",                    -- Warm tones for a softer dark look
+                darken_comments = 0.2,                -- Slightly more darkening for comments (was 0.15)
+                darken_non_text = 0.15,               -- Slightly more for non-text (was 0.1)
+                darken_line_nr = 0.25,                -- Slightly less darkening for line numbers (was 0.3)
+                colorize_diagnostic_underline = true, -- Keep colored underlines for diagnostics
                 styles = {
-                    comments = { "italic" },   -- italicize comments
-                    conditionals = { "bold" }, -- bold conditionals for better visibility
-                    folds = { "italic" },      -- italic folds for differentiation
-                    loops = { "bold" },        -- bold loops for emphasis
-                    functions = { "bold" },    -- bold functions for clarity
-                    keywords = { "bold" },     -- bold keywords for emphasis
-                    strings = { "italic" },    -- italic strings to distinguish from variables
-                    variables = {},            -- keep variables plain for readability
-                    numbers = { "italic" },    -- italic numbers for distinction
-                    booleans = { "bold" },     -- bold booleans for visibility
-                    properties = {},           -- keep properties plain
-                    types = { "bold" },        -- bold types for better structure
-                }
+                    comments = { "italic" },          -- Keep italic for subtle comment distinction
+                    conditionals = { "bold" },        -- Bold for control flow visibility
+                    folds = { "italic" },             -- Italic folds are fine
+                    loops = { "bold" },               -- Bold loops for emphasis
+                    functions = { "bold", "italic" }, -- Add italic to functions for extra clarity
+                    keywords = { "bold" },            -- Bold keywords are good
+                    strings = { "italic" },           -- Italic strings work well
+                    variables = {},                   -- Plain variables for focus
+                    numbers = { "italic" },           -- Italic numbers are fine
+                    booleans = { "bold" },            -- Bold booleans for emphasis
+                    properties = {},                  -- Plain properties are good
+                    types = { "bold", "italic" },     -- Add italic to types for distinction
+                },
+                -- Additional tweaks for programming
+                solid_line_nr = true,      -- Solid background for line numbers (better visibility)
+                darken_cursor_line = 0.05, -- Subtle cursor line highlight
             }
-        end
+        end,
     },
 }

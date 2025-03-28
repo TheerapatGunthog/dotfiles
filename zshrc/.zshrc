@@ -40,15 +40,6 @@ zstyle ':completion:*' menu no
 zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
 zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
 
-# Aliases
-alias ls='eza -la --icons' 
-alias n='nvim'
-alias cls='clear'
-alias tree="find . -print | sed -e 's;[^/]*/;|____;g;s;____|; |;g'"
-alias update="sudo apt update && sudo apt upgrade -y"
-alias lgit="lazygit"
-alias CA="conda activate"
-
 # Shell integrations
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 eval "$(zoxide init --cmd cd zsh)"
@@ -73,3 +64,12 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 . "$HOME/.grit/bin/env"
+
+# Aliases
+alias ls='eza -la --icons' 
+alias n='nvim'
+alias cls='clear'
+alias tree="find . -print | sed -e 's;[^/]*/;|____;g;s;____|; |;g'"
+alias update="sudo apt update && sudo apt upgrade -y"
+alias lgit="lazygit"
+alias CA="conda activate"
