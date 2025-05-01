@@ -66,10 +66,10 @@ export NVM_DIR="$HOME/.nvm"
 . "$HOME/.grit/bin/env"
 
 # Aliases
-alias ls='eza -la --icons' 
+alias l='eza -la --icons' 
 alias n='nvim'
 alias cls='clear'
-alias tree="find . -print | sed -e 's;[^/]*/;|____;g;s;____|; |;g'"
+alias tree="find . -type d -not -path '*/\.*' | sort | sed -e 's;[^/]*/;│   ;g;s;│ *$;└───;'"
 alias update="sudo apt update && sudo apt upgrade -y"
-alias lgit="lazygit"
-alias CA="conda activate"
+alias lg="lazygit"
+alias ca="conda activate"

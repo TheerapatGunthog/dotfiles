@@ -5,13 +5,10 @@ return {
         config = function()
             require("copilot").setup({
                 suggestion = {
-                    enabled = true,          -- Enable suggestion feature
-                    auto_trigger = true,     -- Automatically trigger suggestions as you type
-                    debounce = 75,           -- Debounce time in milliseconds (adjust if suggestions feel too slow or fast)
+                    enabled = true,       -- Enable suggestion feature
+                    auto_trigger = true,  -- Automatically trigger suggestions as you type
                     keymap = {
-                        accept = "<Tab>",    -- Key to accept the suggestion (Tab)
-                        accept_word = false, -- Set to a key if you want to accept a single word
-                        accept_line = false, -- Set to a key if you want to accept a single line
+                        accept = "<M-y>", -- Key to accept the suggestion (Tab)
                     },
                 },
                 filetypes = {
@@ -84,6 +81,26 @@ return {
                     prompt =
                     'Add proper type annotations/declarations to this code following language best practices. Explain any complex type decisions and ensure type safety throughout.',
                 },
+                TranslateComments = {
+                    prompt =
+                    'Translate all comments in this code to clear, professional English. Maintain the original meaning and technical accuracy while ensuring natural English phrasing. Return the entire file with only the comments changed.',
+                },
+                HelpMeFind = {
+                    prompt = [[
+                    Extract the names of technologies, tools, or languages mentioned in the given text only if they are associated with Tech-related job titles. Job titles are enclosed in square brackets [ ]. Categorize the extracted tools into the following six classes:
+                    Programming, Scripting, and Markup Languages – Programming, scripting, and markup languages (e.g., Python, JavaScript, HTML).
+                    Cloud Platforms – Cloud platforms (e.g., AWS, Google Cloud, Azure).
+                    Databases – Database systems (e.g., MySQL, PostgreSQL, MongoDB).
+                    Web Frameworks and Technologies – Web frameworks and technologies (e.g., React, Angular, Django).
+                    Other Frameworks and Libraries – Other frameworks and libraries (e.g., TensorFlow, NumPy, Pandas).
+                    Embedded Technologies – Technologies used in embedded systems (e.g., ESP32, Raspberry Pi, FreeRTOS).
+                    Requirements:
+                    Extract only the names of technologies or tools without descriptions.
+                    Include only tools associated with Tech-related job titles. Job titles are enclosed in [ ].
+                    Categorize them according to the defined classes, and exclude tools that do not fit any category.
+                    Display the output with one item per line under each category.
+                    ]]
+                },
             }
 
             return {
@@ -115,24 +132,26 @@ return {
         -- Keybindings grouped by functionality
         keys = {
             -- General chat
-            { "<leader>zc", ":CopilotChat<CR>",           mode = { "n", "v" }, desc = "Chat with Copilot" },
+            { "<leader>zc",  ":CopilotChat<CR>",                  mode = { "n", "v" }, desc = "Chat with Copilot" },
 
             -- Code operations
-            { "<leader>ze", ":CopilotChatExplain<CR>",    mode = "v",          desc = "Explain Code" },
-            { "<leader>zr", ":CopilotChatReview<CR>",     mode = "v",          desc = "Review Code" },
-            { "<leader>zf", ":CopilotChatFix<CR>",        mode = "v",          desc = "Fix Code Issues" },
-            { "<leader>zo", ":CopilotChatOptimize<CR>",   mode = "v",          desc = "Optimize Code" },
-            { "<leader>zd", ":CopilotChatDocs<CR>",       mode = "v",          desc = "Generate Docs" },
-            { "<leader>zt", ":CopilotChatTests<CR>",      mode = "v",          desc = "Generate Tests" },
-            { "<leader>za", ":CopilotChatRefactor<CR>",   mode = "v",          desc = "Refactor Code" },
-            { "<leader>zx", ":CopilotChatComplexity<CR>", mode = "v",          desc = "Analyze Complexity" },
-            { "<leader>zg", ":CopilotChatDebug<CR>",      mode = "v",          desc = "Debug Help" },
-            { "<leader>zi", ":CopilotChatImplement<CR>",  mode = "v",          desc = "Implement Functionality" },
-            { "<leader>zy", ":CopilotChatTypeCheck<CR>",  mode = "v",          desc = "Add Type Annotations" },
+            { "<leader>ze",  ":CopilotChatExplain<CR>",           mode = "v",          desc = "Explain Code" },
+            { "<leader>zr",  ":CopilotChatReview<CR>",            mode = "v",          desc = "Review Code" },
+            { "<leader>zf",  ":CopilotChatFix<CR>",               mode = "v",          desc = "Fix Code Issues" },
+            { "<leader>zo",  ":CopilotChatOptimize<CR>",          mode = "v",          desc = "Optimize Code" },
+            { "<leader>zd",  ":CopilotChatDocs<CR>",              mode = "v",          desc = "Generate Docs" },
+            { "<leader>zt",  ":CopilotChatTests<CR>",             mode = "v",          desc = "Generate Tests" },
+            { "<leader>za",  ":CopilotChatRefactor<CR>",          mode = "v",          desc = "Refactor Code" },
+            { "<leader>zx",  ":CopilotChatComplexity<CR>",        mode = "v",          desc = "Analyze Complexity" },
+            { "<leader>zg",  ":CopilotChatDebug<CR>",             mode = "v",          desc = "Debug Help" },
+            { "<leader>zi",  ":CopilotChatImplement<CR>",         mode = "v",          desc = "Implement Functionality" },
+            { "<leader>zy",  ":CopilotChatTypeCheck<CR>",         mode = "v",          desc = "Add Type Annotations" },
+            { "<leader>ztc", ":CopilotChatTranslateComments<CR>", mode = "v",          desc = "Translate All Comment to English" },
+            { "<leader>zh",  ":CopilotChatHelpMeFind<CR>",        mode = { "n", "v" }, desc = "Help To Find a Labels for project" },
 
             -- Git operations
-            { "<leader>zm", ":CopilotChatCommit<CR>",     mode = "n",          desc = "Generate Commit Message" },
-            { "<leader>zs", ":CopilotChatCommit<CR>",     mode = "v",          desc = "Generate Commit for Selection" },
+            { "<leader>zm",  ":CopilotChatCommit<CR>",            mode = "n",          desc = "Generate Commit Message" },
+            { "<leader>zs",  ":CopilotChatCommit<CR>",            mode = "v",          desc = "Generate Commit for Selection" },
         },
     },
 }

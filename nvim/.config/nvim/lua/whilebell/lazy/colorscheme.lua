@@ -90,7 +90,7 @@ return {
         priority = 1000, -- Load before other plugins
         config = function()
             vim.g.zenbones = {
-                darkness = "warm",                    -- Warm tones for a softer dark look
+                darkness = "stark",                   -- Warm tones for a softer dark look
                 darken_comments = 0.2,                -- Slightly more darkening for comments (was 0.15)
                 darken_non_text = 0.15,               -- Slightly more for non-text (was 0.1)
                 darken_line_nr = 0.25,                -- Slightly less darkening for line numbers (was 0.3)
@@ -115,4 +115,22 @@ return {
             }
         end,
     },
+    {
+        "nuvic/flexoki-nvim",
+        name = "flexoki",
+        config = function()
+            require("flexoki").setup({
+                variant = "moon",
+            })
+        end
+    },
+    {
+        "rebelot/kanagawa.nvim",
+        name = "kanagawa",
+        config = function()
+            require("kanagawa").setup({
+                theme = "wave",
+            })
+        end
+    }
 }
