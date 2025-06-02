@@ -35,7 +35,6 @@ return {
             vim.g.everforest_enable_italic = 1
             vim.g.everforest_better_performance = 1
             vim.g.everforest_transparent_background = 0
-            -- You can add more options here if desired
         end
     },
     { "ellisonleao/gruvbox.nvim", priority = 1000, config = true },

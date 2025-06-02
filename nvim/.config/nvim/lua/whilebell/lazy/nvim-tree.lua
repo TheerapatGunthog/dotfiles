@@ -19,23 +19,18 @@ return {
                 relativenumber = true,
                 adaptive_size = true,
                 float = {
-                    enable = true,
+                    enable = false,
                     quit_on_focus_loss = true,
                     open_win_config = function()
                         local screen_w = vim.opt.columns:get()
                         local screen_h = vim.opt.lines:get() - vim.opt.cmdheight:get()
-                        local window_w = 80
-                        local window_h = 25
+                        local window_w = 60
                         local window_w_int = math.floor(window_w)
-                        local window_h_int = math.floor(window_h)
                         local center_x = (screen_w - window_w_int) / 2
-                        local center_y = ((screen_h - window_h_int) / 2) - 1
                         return {
                             border = "rounded",
                             relative = "editor",
                             width = window_w_int,
-                            height = window_h_int,
-                            row = center_y,
                             col = center_x,
                             title = " File Explorer ",
                             title_pos = "center",
@@ -43,7 +38,7 @@ return {
                     end,
                 },
                 width = {
-                    min = 80,
+                    min = 60,
                     max = 120,
                 },
             },
