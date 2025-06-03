@@ -51,24 +51,28 @@ return {
             -- Iron doesn't set keymaps by default anymore.
             -- You can set them here or manually add keymaps to the functions in iron.core
             keymaps = {
-                toggle_repl = "<leader>r", -- toggles the repl open and closed.
-                restart_repl = "<leader>R", -- restart REPL
-                send_motion = "<leader>e", -- send motion (selected text)
-                visual_send = "<leader>e", -- send visual
-                send_file = "<leader>f", -- send file
-                send_line = "<leader>l", -- send current line
-                send_paragraph = "<leader>p", -- send paragraph
-                send_until_cursor = "<leader>u", -- send until cursor
-                send_mark = "<leader>m", -- send mark
-                send_code_block = "<leader>b", -- send code block/cell
-                send_code_block_and_move = "<leader>n", -- send code block & move
-                mark_motion = "<leader>mc",
-                mark_visual = "<leader>mc",
-                remove_mark = "<leader>md",
-                cr = "<leader><cr>",
-                interrupt = "<leader><space>",
-                exit = "<leader>q",
-                clear = "<leader>c",
+                toggle_repl = "<space>rr", -- toggles the repl open and closed.
+                -- If repl_open_command is a table as above, then the following keymaps are
+                -- available
+                -- toggle_repl_with_cmd_1 = "<space>rv",
+                -- toggle_repl_with_cmd_2 = "<space>rh",
+                restart_repl = "<space>rR", -- calls `IronRestart` to restart the repl
+                send_motion = "<space>sc",
+                visual_send = "<space>sc",
+                send_file = "<space>sf",
+                send_line = "<space>sl",
+                send_paragraph = "<space>sp",
+                send_until_cursor = "<space>su",
+                send_mark = "<space>sm",
+                send_code_block = "<space>sb",
+                send_code_block_and_move = "<space>sn",
+                mark_motion = "<space>mc",
+                mark_visual = "<space>mc",
+                remove_mark = "<space>md",
+                cr = "<space>s<cr>",
+                interrupt = "<space>s<space>",
+                exit = "<space>sq",
+                clear = "<space>cl",
             },
             -- If the highlight is on, you can change how it looks
             -- For the available options, check nvim_set_hl
