@@ -14,6 +14,11 @@ return {
             sort = {
                 sorter = "case_sensitive",
             },
+            actions = {
+                open_file = {
+                    quit_on_open = true, -- closes nvim-tree after opening a file
+                },
+            },
             view = {
                 number = true,
                 relativenumber = true,
@@ -23,7 +28,6 @@ return {
                     quit_on_focus_loss = true,
                     open_win_config = function()
                         local screen_w = vim.opt.columns:get()
-                        local screen_h = vim.opt.lines:get() - vim.opt.cmdheight:get()
                         local window_w = 60
                         local window_w_int = math.floor(window_w)
                         local center_x = (screen_w - window_w_int) / 2
