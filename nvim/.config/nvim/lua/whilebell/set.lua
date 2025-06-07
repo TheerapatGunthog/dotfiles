@@ -1,7 +1,3 @@
--- vim.opt.guicursor = ""
-
-vim.opt.ignorecase = true
-
 vim.opt.shortmess:append("I")
 
 vim.opt.nu = true
