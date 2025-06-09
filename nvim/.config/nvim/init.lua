@@ -1,6 +1,7 @@
 require("whilebell")
 
-vim.cmd("colorscheme everforest")
+vim.cmd("colorscheme rose-pine")
 vim.o.background = "dark"
 
-vim.g.python3_host_prog = '/home/whilebell/anaconda3/bin/python'
+-- Set a miniconda3 interpreter for Neovim
+vim.g.python3_host_prog = "/home/whilebell/miniconda3/bin/python"
