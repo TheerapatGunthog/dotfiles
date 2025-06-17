@@ -73,3 +73,4 @@ alias tree="find . -type d -not -path '*/\.*' | sort | sed -e 's;[^/]*/;│   ;g
 alias update="sudo apt update && sudo apt upgrade -y"
 alias lg="lazygit"
 alias ca="conda activate"
+alias cl="conda list"
