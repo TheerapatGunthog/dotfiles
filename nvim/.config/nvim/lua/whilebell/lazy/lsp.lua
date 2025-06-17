@@ -29,8 +29,8 @@ return {
 		-- *** CORRECTED: Add 'black' (and 'ruff') to mason.setup() ensure_installed ***
 		require("mason").setup({
 			ensure_installed = {
-				"black", -- Install black (formatter) here
-				"ruff", -- Install ruff (linter/formatter) here if you plan to use it
+				"black",
+				"stylua",
 			},
 			ui = {
 				icons = {
@@ -41,44 +41,78 @@ return {
 			},
 		})
 
+		-- Setup pyright
+		require("lspconfig").pyright.setup({
+			on_attach = on_attach,
+			capabilities = capabilities,
+			settings = {
+				python = {
+					analysis = {
+						typeCheckingMode = "off",
+						reportMissingImports = false,
+						reportMissingTypeStubs = false,
+						autoSearchPaths = true,
+						useLibraryCodeForTypes = true,
+					},
+				},
+			},
+		})
+
+		-- Setup pylsp
+		require("lspconfig").pylsp.setup({
+			on_attach = on_attach,
+			capabilities = capabilities,
+			settings = {
+				pylsp = { -- This is the key for pylsp settings
+					plugins = {
+						pycodestyle = {
+							enabled = true,
+							ignore = { "E501" }, -- Add E501 to the ignore list
+							maxLineLength = 9999, -- You can also set a much higher limit if you prefer
+						},
+					},
+				},
+				python = {
+					analysis = {
+						typeCheckingMode = "off",
+						reportMissingImports = false,
+						reportMissingTypeStubs = false,
+						autoSearchPaths = true,
+						useLibraryCodeForTypes = true,
+					},
+				},
+			},
+		})
+
+		-- Setup lua_ls
+		require("lspconfig").lua_ls.setup({
+			settings = {
+				Lua = {
+					diagnostics = {
+						globals = { "vim", "on_attach" },
+					},
+					workspace = {
+						-- Optional: might help with some other third-party warnings
+						checkThirdParty = false,
+					},
+					telemetry = {
+						enable = false,
+					},
+				},
+			},
+		})
+
 		require("mason-lspconfig").setup({
 			ensure_installed = {
 				"lua_ls",
 				"vimls",
-				"pyright", -- Keep pyright here, as it's an LSP server
+				"pyright",
+				"pylsp",
 			},
 			handlers = {
 				function(server_name) -- default handler
 					require("lspconfig")[server_name].setup({
 						capabilities = capabilities,
-						-- No on_attach for auto-format here, conform.nvim handles it.
-					})
-				end,
-
-				["lua_ls"] = function()
-					local lspconfig = require("lspconfig")
-					lspconfig.lua_ls.setup({
-						capabilities = capabilities,
-						settings = {
-							Lua = {
-								runtime = {
-									version = "Lua 5.1",
-								},
-								diagnostics = {
-									globals = { "vim", "it", "describe", "before_each", "after_each", "bit", "fidget" },
-								},
-								workspace = {
-									library = {
-										vim.env.VIMRUNTIME,
-										vim.fn.stdpath("config") .. "/lua",
-									},
-									checkThirdParty = false,
-								},
-								telemetry = {
-									enable = false,
-								},
-							},
-						},
 						-- No on_attach for auto-format here, conform.nvim handles it.
 					})
 				end,
@@ -89,7 +123,6 @@ return {
 		require("conform").setup({
 			formatters_by_ft = {
 				python = { "black" }, -- This refers to the 'black' executable installed by mason.nvim
-				-- Or: python = { "ruff_format" }, if you want Ruff to handle formatting
 				lua = { "stylua" },
 			},
 			format_on_save = {
@@ -123,6 +156,11 @@ return {
 		})
 
 		vim.diagnostic.config({
+			virtual_text = {
+				spacing = 4,
+				source = "if_many",
+				prefix = "●",
+			},
 			float = {
 				focusable = false,
 				style = "minimal",
