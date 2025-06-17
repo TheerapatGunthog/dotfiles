@@ -1,6 +1,6 @@
 require("whilebell")
 
-vim.cmd("colorscheme rose-pine")
+vim.cmd("colorscheme gruvbox")
 vim.o.background = "dark"
 
 -- Set a miniconda3 interpreter for Neovim
