@@ -41,34 +41,21 @@ return {
 			},
 		})
 
-		-- Setup pyright
-		require("lspconfig").pyright.setup({
-			on_attach = on_attach,
-			capabilities = capabilities,
-			settings = {
-				python = {
-					analysis = {
-						typeCheckingMode = "off",
-						reportMissingImports = false,
-						reportMissingTypeStubs = false,
-						autoSearchPaths = true,
-						useLibraryCodeForTypes = true,
-					},
-				},
-			},
-		})
-
 		-- Setup pylsp
 		require("lspconfig").pylsp.setup({
 			on_attach = on_attach,
 			capabilities = capabilities,
 			settings = {
-				pylsp = { -- This is the key for pylsp settings
+				pylsp = {
 					plugins = {
 						pycodestyle = {
 							enabled = true,
-							ignore = { "E501" }, -- Add E501 to the ignore list
-							maxLineLength = 9999, -- You can also set a much higher limit if you prefer
+							ignore = { "E501", "W503" },
+							maxLineLength = 9999,
+						},
+						mccabe = {
+							enabled = true,
+							threshold = 30, -- Increase the threshold to a value higher than 27
 						},
 					},
 				},
@@ -106,7 +93,6 @@ return {
 			ensure_installed = {
 				"lua_ls",
 				"vimls",
-				"pyright",
 				"pylsp",
 			},
 			handlers = {
