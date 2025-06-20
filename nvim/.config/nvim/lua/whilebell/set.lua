@@ -2,7 +2,7 @@ vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,
 
 vim.opt.shortmess:append("I")
 
-vim.opt.cursorline = true
+vim.opt.cursorline = false
 vim.opt.nu = true
 vim.opt.relativenumber = true
 

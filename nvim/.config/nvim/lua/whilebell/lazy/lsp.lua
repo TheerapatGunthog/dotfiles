@@ -50,7 +50,7 @@ return {
 					plugins = {
 						pycodestyle = {
 							enabled = true,
-							ignore = { "E501", "W503" },
+							ignore = { "E501", "W503", "E203" },
 							maxLineLength = 9999,
 						},
 						mccabe = {
