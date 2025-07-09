@@ -23,27 +23,9 @@ setopt hist_save_no_dups
 setopt hist_ignore_dups
 setopt hist_find_no_dups
 
-# # Use modern completion system
-# autoload -Uz compinit
-# compinit
-#
-# zstyle ':completion:*' auto-description 'specify: %d'
-# zstyle ':completion:*' completer _expand _complete _correct _approximate
-# zstyle ':completion:*' format 'Completing %d'
-# zstyle ':completion:*' group-name ''
-# zstyle ':completion:*' menu select=2
-# eval "$(dircolors -b)"
-# zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
-# zstyle ':completion:*' list-colors ''
-# zstyle ':completion:*' list-prompt %SAt %p: Hit TAB for more, or the character to insert%s
-# zstyle ':completion:*' matcher-list '' 'm:{a-z}={A-Z}' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=* l:|=*'
-# zstyle ':completion:*' menu select=long
-# zstyle ':completion:*' select-prompt %SScrolling active: current selection at %p%s
-# zstyle ':completion:*' use-compctl false
-# zstyle ':completion:*' verbose true
-#
-# zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
-# zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
+# Set the cuda path
+export PATH=/usr/local/cuda/bin${PATH:+:${PATH}}
+export LD_LIBRARY_PATH=/usr/local/cuda/lib64${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
 
 # Added Homebrew
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
@@ -59,6 +41,8 @@ alias tree="find . -type d -not -path '*/\.*' | sort | sed -e 's;[^/]*/;│   ;g
 alias update="sudo apt update && sudo apt upgrade -y"
 alias lg="lazygit"
 alias ca="conda activate"
+alias tm="tmux"
+alias winf="explorer.exe"
 
 # Add in zsh plugin
 zinit light zsh-users/zsh-syntax-highlighting
@@ -94,5 +78,3 @@ unset __conda_setup
 # <<< conda initialize <<<
 
 clear
-
-neofetch
