@@ -2,7 +2,7 @@ vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,
 
 vim.opt.shortmess:append("I")
 
-vim.opt.cursorline = false
+vim.opt.cursorline = true
 vim.opt.nu = true
 vim.opt.relativenumber = true
 
@@ -22,14 +22,13 @@ vim.opt.backup = false
 vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
 vim.opt.undofile = true
 
-vim.opt.hlsearch = true
+vim.opt.hlsearch = false
 vim.opt.incsearch = true
 
 vim.opt.termguicolors = true
 
 vim.opt.scrolloff = 8
-vim.opt.sidescrolloff = 20
-vim.opt.signcolumn = "auto"
+vim.opt.signcolumn = "yes"
 vim.opt.isfname:append("@-@")
 
 vim.opt.updatetime = 50
