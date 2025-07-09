@@ -42,8 +42,8 @@ return {
 					end,
 				},
 				width = {
-					min = 60,
-					max = 120,
+					min = 45,
+					max = 60,
 				},
 			},
 			renderer = {
@@ -52,13 +52,13 @@ return {
 					show = {
 						git = true,
 						file = true,
-						folder = false,
+						folder = true,
 						folder_arrow = true,
 					},
 					glyphs = {
 						folder = {
-							arrow_closed = "⏵",
-							arrow_open = "⏷",
+							arrow_closed = " ⏵",
+							arrow_open = " ⏷",
 						},
 						git = {
 							unstaged = "✗",

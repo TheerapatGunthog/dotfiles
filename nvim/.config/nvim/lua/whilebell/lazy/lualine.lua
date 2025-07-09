@@ -6,30 +6,57 @@ return {
 			options = {
 				icons_enabled = true,
 				theme = "auto",
-				-- component_separators = { left = "│", right = "│" },
-				-- section_separators = { left = "", right = "" },
-				disabled_filetypes = { "NvimTree", "Trouble", "help" },
+				-- Use proper Nerd Font characters for separators
+				component_separators = { left = "", right = "" }, -- Example: Powerline arrow pointing right for left sections, inv arrow for right sections
+				section_separators = { left = "", right = "" }, -- Match component separators
+
+				disabled_filetypes = {
+					"NvimTree",
+					"Trouble",
+					"help",
+					"terminal",
+					"lazy",
+				},
 				globalstatus = true,
 			},
 			sections = {
 				lualine_a = { "mode" },
 				lualine_b = {
-					{ "branch", icon = "" },
+					{
+						"branch",
+						icon = "",
+						color = { fg = "#61afef" },
+					},
 					{
 						"diff",
-						symbols = { added = " ", modified = " ", removed = " " },
+						symbols = { added = " ", modified = " ", removed = " " },
 						colored = true,
 					},
 				},
 				lualine_c = {
-					{ "filename", path = 1, symbols = { modified = "●", readonly = "", unnamed = "[No Name]" } },
+					{
+						"filename",
+						path = 1,
+						symbols = { modified = "●", readonly = "ReadOnly", unnamed = "[No Name]" },
+						color = { fg = "#98c379", gui = "bold" },
+					},
 					{
 						"diagnostics",
 						sources = { "nvim_diagnostic" },
-						symbols = { error = " ", warn = " ", info = " ", hint = " " },
+						symbols = { error = " ", warn = " ", info = " ", hint = "󰌶 " },
+						colors = {
+							error = "Error",
+							warn = "Warning",
+							info = "Info",
+							hint = "Hint",
+						},
 					},
 				},
-				lualine_x = { "encoding", "fileformat", "filetype" },
+				lualine_x = {
+					"encoding",
+					"fileformat",
+					"filetype",
+				},
 				lualine_y = { "progress" },
 				lualine_z = { "location" },
 			},
@@ -41,7 +68,15 @@ return {
 				lualine_y = {},
 				lualine_z = {},
 			},
-			extensions = { "fugitive", "nvim-tree", "quickfix", "toggleterm" },
+			extensions = {
+				"fugitive",
+				"nvim-tree",
+				"quickfix",
+				"toggleterm",
+				"man",
+				"mason",
+				"trouble",
+			},
 		})
 	end,
 }
