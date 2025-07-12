@@ -31,10 +31,14 @@ local function setup_basic_editing_keys()
 		[[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]],
 		{ desc = "Search and replace word under cursor" }
 	)
+
+	-- Fast exit nvim
+	keymap("n", "<leader>q", "<cmd>qa<CR>", { desc = "Quit all buffers" })
+	keymap("n", "<leader>Q", "<cmd>qa!<CR>", { desc = "Quit all buffers" })
 end
 
 -- ========================================================
--- SPLIT AND TMUX NAVIGATION
+-- SPLIT WINDOWS AND TMUX NAVIGATION
 -- ========================================================
 local function setup_split_navigation()
 	-- navigate splits
@@ -46,6 +50,12 @@ local function setup_split_navigation()
 	-- resize splits
 	keymap("n", "<leader><left>", ":vertical resize +20<cr>", { desc = "Increase vertical split size" })
 	keymap("n", "<leader><right>", ":vertical resize -20<cr>", { desc = "Decrease vertical split size" })
+
+	-- Windows
+	keymap("n", "<leader>wv", ":vsplit<CR>")
+	keymap("n", "<leader>wh", ":split<CR>", { desc = "Split window horizontally" })
+	-- Close current window
+	keymap("n", "<leader>wc", "<C-w>c", { desc = "Close current window" })
 end
 
 -- ========================================================
