@@ -10,6 +10,9 @@ vim.g.mapleader = " "
 -- EDITING AND NAVIGATION
 -- ========================================================
 local function setup_basic_editing_keys()
+	-- Exit terminal mode
+	keymap("t", "<Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
+
 	-- Movement in visual mode
 	keymap("v", "J", ":m '>+1<CR>gv=gv", { desc = "Move selected line down" })
 	keymap("v", "K", ":m '<-2<CR>gv=gv", { desc = "Move selected line up" })

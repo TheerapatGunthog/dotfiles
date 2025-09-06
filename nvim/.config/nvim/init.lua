@@ -7,7 +7,5 @@ todo_float.setup({
 
 vim.keymap.set("n", "<leader>td", ":Td<CR>", { noremap = true, silent = true, desc = "Open To-Do Float" })
 
-vim.cmd("colorscheme gruvbox")
-
 -- Set a miniconda3 interpreter for Neovim
 vim.g.python3_host_prog = "/home/whilebell/miniconda3/bin/python"

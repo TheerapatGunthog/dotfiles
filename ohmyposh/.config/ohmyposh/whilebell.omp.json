@@ -1,18 +1,18 @@
 {
   "$schema": "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json",
   "palette": {
-    "background": "#282828",
-    "foreground": "#ebdbb2",
-    "muted": "#928374",
-    "accent": "#83a598",
-    "subtle": "#8ec07c",
-    "yellow": "#fabd2f",
-    "blue": "#83a598",
-    "aqua": "#8ec07c",
-    "green": "#b8bb26",
-    "orange": "#fe8019",
-    "red": "#fb4934",
-    "purple": "#d3869b"
+    "background": "#1f1f28",
+    "foreground": "#dcd7ba",
+    "muted": "#727169",
+    "accent": "#957fb8",
+    "subtle": "#76946a",
+    "yellow": "#dca561",
+    "blue": "#7e9cd8",
+    "aqua": "#6a9589",
+    "green": "#98bb6c",
+    "orange": "#ffa066",
+    "red": "#e46876",
+    "purple": "#957fb8"
   },
   "blocks": [
     {
@@ -25,7 +25,7 @@
             "display_mode": "environment",
             "fetch_virtual_env": true
           },
-          "template": "({{ if .Venv }}{{ .Venv }}{{ end }})",
+          "template": " ({{ if .Venv }}{{ .Venv }}{{ end }})",
           "type": "python"
         }
       ],
@@ -38,13 +38,13 @@
         {
           "foreground": "p:muted",
           "style": "plain",
-          "template": "{{.Icon}} ",
+          "template": " {{.Icon}}",
           "type": "os"
         },
         {
           "foreground": "p:foreground",
           "style": "plain",
-          "template": "{{ .UserName }}@{{ .HostName }} ",
+          "template": " {{ .UserName }}@{{ .HostName }} ",
           "type": "session"
         },
         {

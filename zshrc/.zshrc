@@ -35,6 +35,7 @@ eval "$(oh-my-posh init zsh --config /home/whilebell/.config/ohmyposh/whilebell.
 
 # Aliases
 alias l='eza -la --icons' 
+alias ls='eza --icons'
 alias vim='nvim'
 alias cls='clear'
 alias tree="find . -type d -not -path '*/\.*' | sort | sed -e 's;[^/]*/;│   ;g;s;│ *$;└───;'"

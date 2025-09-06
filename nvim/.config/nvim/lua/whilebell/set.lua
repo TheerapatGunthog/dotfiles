@@ -2,7 +2,6 @@ vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,
 
 vim.opt.shortmess:append("I")
 
-vim.opt.cursorline = true
 vim.opt.nu = true
 vim.opt.relativenumber = true
 
@@ -32,6 +31,8 @@ vim.opt.signcolumn = "yes"
 vim.opt.isfname:append("@-@")
 
 vim.opt.updatetime = 50
+
+vim.opt.colorcolumn = "100"
 
 -- Disable mouse functionality
 vim.o.mouse = ""
