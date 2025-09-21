@@ -17,6 +17,7 @@ return {
 	config = function()
 		local cmp = require("cmp")
 		local cmp_lsp = require("cmp_nvim_lsp")
+
 		local capabilities = vim.tbl_deep_extend(
 			"force",
 			{},
@@ -26,37 +27,32 @@ return {
 
 		require("fidget").setup({})
 
-		-- *** CORRECTED: Add 'black' (and 'ruff') to mason.setup() ensure_installed ***
 		require("mason").setup({
-			ensure_installed = {
-				"black",
-				"stylua",
-			},
+			ensure_installed = { "black", "stylua" },
 			ui = {
-				icons = {
-					package_installed = "✓",
-					package_pending = "➜",
-					package_uninstalled = "✗",
-				},
+				icons = { package_installed = "✓", package_pending = "➜", package_uninstalled = "✗" },
 			},
 		})
 
-		-- Setup pylsp
-		require("lspconfig").pylsp.setup({
-			on_attach = on_attach,
+		-- mason-lspconfig v2+ auto-enables servers via vim.lsp.enable() by default.
+		require("mason-lspconfig").setup({
+			ensure_installed = { "lua_ls", "vimls", "pylsp" },
+			-- automatic_enable = true, -- default
+		})
+
+		-- Global defaults for all LSP clients
+		vim.lsp.config("*", {
 			capabilities = capabilities,
+			-- on_attach = on_attach, -- uncomment if you have it
+		})
+
+		-- pylsp
+		vim.lsp.config("pylsp", {
 			settings = {
 				pylsp = {
 					plugins = {
-						pycodestyle = {
-							enabled = false,
-							ignore = { "E501", "W503", "E203" },
-							maxLineLength = 9999,
-						},
-						mccabe = {
-							enabled = true,
-							threshold = 30, -- Increase the threshold to a value higher than 27
-						},
+						pycodestyle = { enabled = false, ignore = { "E501", "W503", "E203" }, maxLineLength = 9999 },
+						mccabe = { enabled = true, threshold = 30 },
 					},
 				},
 				python = {
@@ -71,55 +67,22 @@ return {
 			},
 		})
 
-		-- Setup lua_ls
-		require("lspconfig").lua_ls.setup({
+		-- lua_ls
+		vim.lsp.config("lua_ls", {
 			settings = {
 				Lua = {
-					diagnostics = {
-						globals = { "vim", "on_attach" },
-					},
-					workspace = {
-						-- Optional: might help with some other third-party warnings
-						checkThirdParty = false,
-					},
-					telemetry = {
-						enable = false,
-					},
+					diagnostics = { globals = { "vim", "on_attach" } },
+					workspace = { checkThirdParty = false },
+					telemetry = { enable = false },
 				},
 			},
 		})
 
-		require("mason-lspconfig").setup({
-			ensure_installed = {
-				"lua_ls",
-				"vimls",
-				"pylsp",
-			},
-			handlers = {
-				function(server_name) -- default handler
-					require("lspconfig")[server_name].setup({
-						capabilities = capabilities,
-						-- No on_attach for auto-format here, conform.nvim handles it.
-					})
-				end,
-			},
-		})
+		-- Enable the configs now (mason-lspconfig will also enable on install)
+		vim.lsp.enable({ "pylsp", "lua_ls", "vimls" })
 
-		-- *** CONFORM.NVIM SETUP (no change needed here, it correctly refers to "black") ***
-		require("conform").setup({
-			formatters_by_ft = {
-				python = { "black" }, -- This refers to the 'black' executable installed by mason.nvim
-				lua = { "stylua" },
-			},
-			format_on_save = {
-				lsp_format = "disable",
-				async = false,
-				timeout_ms = 500,
-			},
-		})
-
+		-- nvim-cmp
 		local cmp_select = { behavior = cmp.SelectBehavior.Select }
-
 		cmp.setup({
 			snippet = {
 				expand = function(args)
@@ -132,21 +95,15 @@ return {
 				["<C-y>"] = cmp.mapping.confirm({ select = true }),
 				["<C-Space>"] = cmp.mapping.complete(),
 			}),
-			sources = cmp.config.sources({
-				{ name = "nvim_lsp" },
-				{ name = "luasnip" },
-			}, {
-				{ name = "buffer" },
-				{ name = "path" },
-			}),
+			sources = cmp.config.sources(
+				{ { name = "nvim_lsp" }, { name = "luasnip" } },
+				{ { name = "buffer" }, { name = "path" } }
+			),
 		})
 
+		-- diagnostics UI
 		vim.diagnostic.config({
-			virtual_text = {
-				spacing = 4,
-				source = "if_many",
-				prefix = "●",
-			},
+			virtual_text = { spacing = 4, source = "if_many", prefix = "●" },
 			float = {
 				focusable = false,
 				style = "minimal",
@@ -155,6 +112,12 @@ return {
 				header = "",
 				prefix = "",
 			},
+		})
+
+		-- conform
+		require("conform").setup({
+			formatters_by_ft = { python = { "black" }, lua = { "stylua" } },
+			format_on_save = { lsp_format = "disable", async = false, timeout_ms = 500 },
 		})
 	end,
 }
