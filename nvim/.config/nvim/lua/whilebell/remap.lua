@@ -51,8 +51,10 @@ local function setup_split_navigation()
 	keymap("n", "<C-k>", "<cmd> TmuxNavigateUp<CR>", { desc = "Navigate to split/tmux pane above" })
 
 	-- resize splits
-	keymap("n", "<leader><left>", ":vertical resize +20<cr>", { desc = "Increase vertical split size" })
-	keymap("n", "<leader><right>", ":vertical resize -20<cr>", { desc = "Decrease vertical split size" })
+	keymap("n", "<leader><right>", ":vertical resize +5<cr>", { desc = "Increase vertical split size" })
+	keymap("n", "<leader><left>", ":vertical resize -5<cr>", { desc = "Decrease vertical split size" })
+	keymap("n", "<leader><down>", ":resize +5<cr>", { desc = "Increase horizontal split size" })
+	keymap("n", "<leader><up>", ":resize -5<cr>", { desc = "Decrease horizontal split size" })
 
 	-- Windows
 	keymap("n", "<leader>wv", ":vsplit<CR>")
